@@ -23,8 +23,14 @@ namespace Cat_Anh
             InitializeComponent();
         }
 
+        private void test_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
+            pictureBox1.Image = null;
             if (pictureBox1.Image == null)
             {
                 DialogResult dialogre = file.ShowDialog();
@@ -42,7 +48,6 @@ namespace Cat_Anh
         {
             pictureBox1.Focus();
         }
-
         
         private void pictureBox1_MouseWheel(object sender, MouseEventArgs e) // biến a dùng để lưu giá trị zoom
         {
@@ -137,10 +142,10 @@ namespace Cat_Anh
                 Cursor = Cursors.Cross;
                 cropPen.DashStyle = DashStyle.DashDotDot;
             }
+
+            Cursor = Cursors.Arrow;
             pictureBox1.Refresh();
         }
-
-
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e) // bỏ nhấn chuột trái
         {
             xp2 = e.X;
@@ -174,7 +179,6 @@ namespace Cat_Anh
             }
 
             #endregion Kéo thả ảnh
-
             //Chon vùng cắt ảnh
             if (tmp == 1)
             {
@@ -185,10 +189,10 @@ namespace Cat_Anh
                 g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
                 g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
                 g.DrawImage(bit, 0, 0, rect, GraphicsUnit.Pixel);   //Vẽ định hình tại vị trí quy định và với kích thước quy định.
-                pictureBox2.Image = cropBitmap;
-                pictureBox1.Width = cropBitmap.Width;
-                pictureBox1.Height = cropBitmap.Height;
-                cropBitmap.Save("e:\\abc.jpg");
+                Su_ly.LuuFileAnh(cropBitmap);
+                //pictureBox2.Image = cropBitmap;
+                //pictureBox1.Width = cropBitmap.Width;
+                //pictureBox1.Height = cropBitmap.Height;
             }
         }
         

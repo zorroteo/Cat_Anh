@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
-
+using System.IO;
+using System.Windows.Forms;
 namespace Cat_Anh
 {
     internal class Su_ly
@@ -15,6 +16,28 @@ namespace Cat_Anh
             grap.DrawImage(img, 0, 0, w, h);
             grap.Dispose();
             return (Image)btm;
+        }
+
+        public static void LuuFileAnh(System.Drawing.Image img)
+        {
+            SaveFileDialog s = new SaveFileDialog();
+            s.FileName = "Image";// mac dinh file se la anh
+            s.DefaultExt = ".Jpg";//mac dinh la jpg
+            s.Filter = "Image (.jpg)|.jpg";//loc voi duoi  jpg
+            if (s.ShowDialog() == DialogResult.OK)
+            {
+                //Luu anh
+                string filename = s.FileName;
+                FileStream fstream = new FileStream(filename, FileMode.Create);
+                img.Save(fstream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                fstream.Close();
+            }
+        }
+        public static Image img ()
+        {
+            Image img;
+            img = Image.FromFile(" img\\1480552501_Image_-_Google_Docs.png" );
+            return img;
         }
     }
 }

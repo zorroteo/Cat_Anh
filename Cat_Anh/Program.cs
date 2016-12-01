@@ -13,7 +13,7 @@ namespace Cat_Anh
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new test());
+            Application.Run(new crop_image());
         }
     }
 }
