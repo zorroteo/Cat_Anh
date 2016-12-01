@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(crop_image));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,22 +59,19 @@
             this.pane_image = new DevComponents.DotNetBar.PanelEx();
             this.pb_image = new System.Windows.Forms.PictureBox();
             this.gb_crop = new System.Windows.Forms.GroupBox();
-            this.buttonX5 = new DevComponents.DotNetBar.ButtonX();
-            this.buttonX4 = new DevComponents.DotNetBar.ButtonX();
+            this.btnsave = new DevComponents.DotNetBar.ButtonX();
+            this.btn_cut = new DevComponents.DotNetBar.ButtonX();
             this.btn_crop = new DevComponents.DotNetBar.ButtonX();
             this.btn_redo = new DevComponents.DotNetBar.ButtonX();
             this.btn_undo = new DevComponents.DotNetBar.ButtonX();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.buttonX9 = new DevComponents.DotNetBar.ButtonX();
-            this.buttonX8 = new DevComponents.DotNetBar.ButtonX();
-            this.btn_save = new DevComponents.DotNetBar.ButtonX();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lbX = new DevComponents.DotNetBar.LabelX();
+            this.lbY = new DevComponents.DotNetBar.LabelX();
             this.menuStrip1.SuspendLayout();
             this.pane_image.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_image)).BeginInit();
             this.gb_crop.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -111,7 +107,7 @@
             this.newToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripMenuItem.Image")));
             this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(129, 24);
             this.newToolStripMenuItem.Text = "&New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -120,38 +116,38 @@
             this.openToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripMenuItem.Image")));
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(129, 24);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(126, 6);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(129, 24);
             this.saveToolStripMenuItem.Text = "&Save";
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(129, 24);
             this.saveAsToolStripMenuItem.Text = "Save &As";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(126, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(129, 24);
             this.exitToolStripMenuItem.Text = "E&xit";
             // 
             // editToolStripMenuItem
@@ -317,39 +313,43 @@
             // 
             // gb_crop
             // 
-            this.gb_crop.Controls.Add(this.buttonX5);
-            this.gb_crop.Controls.Add(this.buttonX4);
+            this.gb_crop.Controls.Add(this.btnsave);
+            this.gb_crop.Controls.Add(this.btn_cut);
             this.gb_crop.Controls.Add(this.btn_crop);
             this.gb_crop.Controls.Add(this.btn_redo);
             this.gb_crop.Controls.Add(this.btn_undo);
-            this.gb_crop.Location = new System.Drawing.Point(1092, 32);
+            this.gb_crop.Location = new System.Drawing.Point(1033, 31);
             this.gb_crop.Name = "gb_crop";
-            this.gb_crop.Size = new System.Drawing.Size(228, 197);
+            this.gb_crop.Size = new System.Drawing.Size(235, 197);
             this.gb_crop.TabIndex = 5;
             this.gb_crop.TabStop = false;
             this.gb_crop.Text = "Vẽ";
             // 
-            // buttonX5
+            // btnsave
             // 
-            this.buttonX5.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX5.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX5.Location = new System.Drawing.Point(133, 111);
-            this.buttonX5.Name = "buttonX5";
-            this.buttonX5.Size = new System.Drawing.Size(78, 42);
-            this.buttonX5.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.buttonX5.TabIndex = 4;
-            this.buttonX5.Text = "buttonX5";
+            this.btnsave.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnsave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnsave.Image = ((System.Drawing.Image)(resources.GetObject("btnsave.Image")));
+            this.btnsave.Location = new System.Drawing.Point(133, 111);
+            this.btnsave.Name = "btnsave";
+            this.btnsave.Size = new System.Drawing.Size(78, 51);
+            this.btnsave.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnsave.TabIndex = 4;
+            this.btnsave.Text = "Save";
+            this.btnsave.Click += new System.EventHandler(this.btnsave_Click);
             // 
-            // buttonX4
+            // btn_cut
             // 
-            this.buttonX4.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX4.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX4.Location = new System.Drawing.Point(18, 111);
-            this.buttonX4.Name = "buttonX4";
-            this.buttonX4.Size = new System.Drawing.Size(78, 42);
-            this.buttonX4.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.buttonX4.TabIndex = 3;
-            this.buttonX4.Text = "buttonX4";
+            this.btn_cut.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btn_cut.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btn_cut.Image = ((System.Drawing.Image)(resources.GetObject("btn_cut.Image")));
+            this.btn_cut.Location = new System.Drawing.Point(18, 111);
+            this.btn_cut.Name = "btn_cut";
+            this.btn_cut.Size = new System.Drawing.Size(98, 51);
+            this.btn_cut.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btn_cut.TabIndex = 3;
+            this.btn_cut.Text = "Cut";
+            this.btn_cut.Click += new System.EventHandler(this.btn_cut_Click);
             // 
             // btn_crop
             // 
@@ -368,7 +368,7 @@
             this.btn_redo.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btn_redo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btn_redo.Image = ((System.Drawing.Image)(resources.GetObject("btn_redo.Image")));
-            this.btn_redo.Location = new System.Drawing.Point(86, 25);
+            this.btn_redo.Location = new System.Drawing.Point(62, 25);
             this.btn_redo.Name = "btn_redo";
             this.btn_redo.Size = new System.Drawing.Size(37, 53);
             this.btn_redo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -379,77 +379,48 @@
             this.btn_undo.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btn_undo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btn_undo.Image = ((System.Drawing.Image)(resources.GetObject("btn_undo.Image")));
-            this.btn_undo.Location = new System.Drawing.Point(42, 25);
+            this.btn_undo.Location = new System.Drawing.Point(18, 25);
             this.btn_undo.Name = "btn_undo";
             this.btn_undo.Size = new System.Drawing.Size(38, 53);
             this.btn_undo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btn_undo.TabIndex = 0;
             // 
-            // groupBox2
+            // groupBox1
             // 
-            this.groupBox2.Controls.Add(this.buttonX9);
-            this.groupBox2.Controls.Add(this.buttonX8);
-            this.groupBox2.Controls.Add(this.btn_save);
-            this.groupBox2.Location = new System.Drawing.Point(1092, 270);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(228, 118);
-            this.groupBox2.TabIndex = 6;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
+            this.groupBox1.Controls.Add(this.lbX);
+            this.groupBox1.Controls.Add(this.lbY);
+            this.groupBox1.Location = new System.Drawing.Point(911, 31);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(103, 77);
+            this.groupBox1.TabIndex = 7;
+            this.groupBox1.TabStop = false;
             // 
-            // buttonX9
+            // lbX
             // 
-            this.buttonX9.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX9.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX9.Location = new System.Drawing.Point(136, 79);
-            this.buttonX9.Name = "buttonX9";
-            this.buttonX9.Size = new System.Drawing.Size(75, 23);
-            this.buttonX9.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.buttonX9.TabIndex = 2;
-            this.buttonX9.Text = "buttonX9";
             // 
-            // buttonX8
             // 
-            this.buttonX8.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX8.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX8.Location = new System.Drawing.Point(136, 38);
-            this.buttonX8.Name = "buttonX8";
-            this.buttonX8.Size = new System.Drawing.Size(75, 23);
-            this.buttonX8.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.buttonX8.TabIndex = 1;
-            this.buttonX8.Text = "buttonX8";
             // 
-            // btn_save
+            this.lbX.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbX.Location = new System.Drawing.Point(21, 16);
+            this.lbX.Name = "lbX";
+            this.lbX.Size = new System.Drawing.Size(75, 23);
+            this.lbX.TabIndex = 5;
             // 
-            this.btn_save.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btn_save.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btn_save.Location = new System.Drawing.Point(18, 38);
-            this.btn_save.Name = "btn_save";
-            this.btn_save.Size = new System.Drawing.Size(75, 23);
-            this.btn_save.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btn_save.TabIndex = 0;
-            this.btn_save.Text = "buttonX7";
-            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
+            // lbY
             // 
-            // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(945, 130);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 26);
-            this.textBox1.TabIndex = 11;
             // 
-            // imageList1
             // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "1480552501_Image_-_Google_Docs.png");
-            this.imageList1.Images.SetKeyName(1, "1480554161_crop.png");
+            this.lbY.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbY.Location = new System.Drawing.Point(21, 45);
+            this.lbY.Name = "lbY";
+            this.lbY.Size = new System.Drawing.Size(75, 23);
+            this.lbY.TabIndex = 6;
             // 
             // crop_image
             // 
             this.ClientSize = new System.Drawing.Size(1344, 691);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gb_crop);
             this.Controls.Add(this.pane_image);
             this.Controls.Add(this.menuStrip1);
@@ -465,7 +436,7 @@
             this.pane_image.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_image)).EndInit();
             this.gb_crop.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -503,16 +474,13 @@
         private DevComponents.DotNetBar.PanelEx pane_image;
         private System.Windows.Forms.PictureBox pb_image;
         private System.Windows.Forms.GroupBox gb_crop;
-        private DevComponents.DotNetBar.ButtonX buttonX5;
-        private DevComponents.DotNetBar.ButtonX buttonX4;
+        private DevComponents.DotNetBar.ButtonX btnsave;
+        private DevComponents.DotNetBar.ButtonX btn_cut;
         private DevComponents.DotNetBar.ButtonX btn_redo;
         private DevComponents.DotNetBar.ButtonX btn_undo;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private DevComponents.DotNetBar.ButtonX buttonX9;
-        private DevComponents.DotNetBar.ButtonX buttonX8;
-        private DevComponents.DotNetBar.ButtonX btn_save;
         private DevComponents.DotNetBar.ButtonX btn_crop;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private DevComponents.DotNetBar.LabelX lbX;
+        private DevComponents.DotNetBar.LabelX lbY;
     }
 }

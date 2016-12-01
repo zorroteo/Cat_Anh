@@ -27,6 +27,8 @@ namespace Cat_Anh
 
         private void pb_image_MouseMove(object sender, MouseEventArgs e)
         {
+            lbX.Text =" x: " + e.X.ToString();
+            lbY.Text =" y: "+  e.Y.ToString();
             if (e.Button == MouseButtons.Left)
             {
                 if (pb_image.Image == null)
@@ -73,7 +75,7 @@ namespace Cat_Anh
                 #endregion
 
             }
-        }
+        } // giu keo chuot trai
 
 
         private void pb_image_MouseDown(object sender, MouseEventArgs e)
@@ -97,14 +99,6 @@ namespace Cat_Anh
 
         private void crop_image_Load(object sender, EventArgs e)
         {
-
-        }
-        private string[] list_image(string path)
-        {
-            //string path = @"C:\Users\zorro\Desktop\test";
-            string[] filePahts1 = System.IO.Directory.GetFiles(@"C:\Users\zorro\Desktop\test", "*.jpg*", SearchOption.AllDirectories);
-            return filePahts1;
-            //textBox1.Text = filePahts1[2].ToString();
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -119,8 +113,20 @@ namespace Cat_Anh
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            pb_image.Image = null;
+            b = 0;
+            img = Image.FromFile(@"C:\Users\zorro\documents\visual studio 2015\Projects\Cat_Anh\Cat_Anh\img\1480552501_Image_-_Google_Docs.png", true);
+            pb_image.Image = img;
+            pb_image.Location=new Point(386, 254);
+        }
 
+        private void btn_cut_Click(object sender, EventArgs e)
+        {
+            pb_image.Image = cropBitmap;
+        }
+
+        private void btnsave_Click(object sender, EventArgs e)
+        {
+            Su_ly.LuuFileAnh(cropBitmap);
         }
 
         private void pb_image_MouseUp(object sender, MouseEventArgs e)
@@ -166,10 +172,8 @@ namespace Cat_Anh
                 g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
                 g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
                 g.DrawImage(bit, 0, 0, rect, GraphicsUnit.Pixel);   //Vẽ định hình tại vị trí quy định và với kích thước quy định.
-                pb_image.Image = cropBitmap;
-                //pictureBox2.Image = cropBitmap;
-                //pictureBox1.Width = cropBitmap.Width;
-                //pictureBox1.Height = cropBitmap.Height;
+
+                //pb_image.Image = cropBitmap;
             }
         }
 
@@ -204,12 +208,14 @@ namespace Cat_Anh
                 {
                     img = Image.FromFile(file.FileName);
                     pb_image.Image = img;
+                    b = 1;
                 }
                 else
                 {
-                    Su_ly.img();
+                    img = Image.FromFile(@"C:\Users\zorro\documents\visual studio 2015\Projects\Cat_Anh\Cat_Anh\img\1480552501_Image_-_Google_Docs.png", true);
+                    pb_image.Image = img;
+                    pb_image.Location = new Point(386, 254);
                 }
-                b = 1;
             }
             pb_image.MouseWheel += new MouseEventHandler(pictureBox1_MouseWheel);
             pb_image.MouseHover += new EventHandler(pictureBox1_MouseHover);
@@ -231,7 +237,6 @@ namespace Cat_Anh
                 if (e.Delta > 0 && a >= 5 && a < 200)
                 {
                     a += 5;
-                    textBox1.Text = a.ToString();
                 }
             }
             if (e.Delta < 0 && a == 5)
@@ -243,7 +248,6 @@ namespace Cat_Anh
                 if (e.Delta < 0 && a > 5 && a <= 200)
                 {
                     a -= 5;
-                    textBox1.Text = a.ToString();
                 }
             }
             if (pb_image.Image != null)
@@ -252,8 +256,5 @@ namespace Cat_Anh
             }
 
         }
-
-
-
     }
 }

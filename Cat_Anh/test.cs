@@ -18,6 +18,7 @@ namespace Cat_Anh
         private Bitmap cropBitmap;
         private Pen cropPen = new Pen(Color.Yellow, 1);
         public DashStyle cropDashStyle = DashStyle.DashDot;
+
         public test()
         {
             InitializeComponent();
@@ -25,7 +26,6 @@ namespace Cat_Anh
 
         private void test_Load(object sender, EventArgs e)
         {
-
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -48,13 +48,12 @@ namespace Cat_Anh
         {
             pictureBox1.Focus();
         }
-        
+
         private void pictureBox1_MouseWheel(object sender, MouseEventArgs e) // biến a dùng để lưu giá trị zoom
         {
-           
             if (e.Delta > 0 && a == 200)
             {
-                    return;
+                return;
             }
             else
             {
@@ -80,9 +79,7 @@ namespace Cat_Anh
             {
                 pictureBox1.Image = Su_ly.zoom(img, a); //zoom ảnh
             }
-               
         }
-       
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e) // kéo giữ chuột
         {
@@ -97,6 +94,7 @@ namespace Cat_Anh
                 cropHeight = e.Y - yp1;
 
                 #region if Chọn button crop
+
                 if (tmp == 1)
                 {
                     if (cropWidth > 0 && cropHeight > 0)
@@ -115,7 +113,8 @@ namespace Cat_Anh
                     }
 
                     if (cropWidth < 0 && cropHeight > 0)
-                    { pictureBox1.Refresh();
+                    {
+                        pictureBox1.Refresh();
                         Graphics g = pictureBox1.CreateGraphics();
                         g.DrawRectangle(cropPen, e.X, yp1, Math.Abs(cropWidth), Math.Abs(cropHeight));
                         rect = new Rectangle(e.X, yp1, Math.Abs(e.X - xp1), Math.Abs(e.Y - yp1));//hình chữ nhật tọa độ góc trên bên trái và h,w
@@ -128,8 +127,8 @@ namespace Cat_Anh
                         rect = new Rectangle(xp1, e.Y, Math.Abs(e.X - xp1), Math.Abs(e.Y - yp1));//hình chữ nhật tọa độ góc trên bên trái và h,w
                     }
                 }
-                #endregion
 
+                #endregion if Chọn button crop
             }
         }
 
@@ -146,6 +145,7 @@ namespace Cat_Anh
             Cursor = Cursors.Arrow;
             pictureBox1.Refresh();
         }
+
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e) // bỏ nhấn chuột trái
         {
             xp2 = e.X;
@@ -179,6 +179,7 @@ namespace Cat_Anh
             }
 
             #endregion Kéo thả ảnh
+
             //Chon vùng cắt ảnh
             if (tmp == 1)
             {
@@ -195,7 +196,7 @@ namespace Cat_Anh
                 //pictureBox1.Height = cropBitmap.Height;
             }
         }
-        
+
         private void buttonX1_Click(object sender, EventArgs e)
         {
             // chưa chọn buton vẽ thì tmp=0 else tmp =1

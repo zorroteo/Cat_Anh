@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Cat_Anh
+﻿namespace Cat_Anh
 {
-    class zoom_anh
+    internal class zoom_anh
     {
     }
 }
