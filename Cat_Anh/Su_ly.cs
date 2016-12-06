@@ -34,5 +34,24 @@ namespace Cat_Anh
                 fstream.Close();
             }
         }
+
+        public static Image crop(int x, int y, int crop_w, int crop_h, Image img)
+        {
+            Bitmap temp = new Bitmap(img);
+            int a1 = temp.Height;
+            int b1 = temp.Width;
+            Bitmap btm = new Bitmap(crop_w, crop_h);
+            for (int i = x; i < crop_w + x; i++)
+            {
+                for (int j = y; j < crop_h + y; j++)
+                {
+                    int g = temp.GetPixel(i, j).G;
+                    int r = temp.GetPixel(i, j).R;
+                    int b = temp.GetPixel(i, j).B;
+                    btm.SetPixel(i - x, j - y, Color.FromArgb(r, g, b));
+                }
+            }
+            return btm;
+        }
     }
 }

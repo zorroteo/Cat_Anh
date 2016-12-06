@@ -429,7 +429,6 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "crop_image";
             this.Text = "crop_image";
-            this.Load += new System.EventHandler(this.crop_image_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.pane_image.ResumeLayout(false);
