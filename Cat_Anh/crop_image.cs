@@ -15,7 +15,7 @@ namespace Cat_Anh
         /// </summary>
         private int a = 100;
 
-        private int xp1, yp1, xp2, yp2, xpanel, ypanel, x, y;
+        private int x1_picture, y1_picture, x2_picture, y2_picture, xloca_img, yloca_img, x, y;
 
         private Bitmap cropBitmap;
         private Pen cropPen = new Pen(Color.Yellow, 1);
@@ -34,74 +34,75 @@ namespace Cat_Anh
         /// <summary>
         /// Biến lưu sự kiện click button crop, t=1: crop; t=0: bỏ crop
         /// </summary>
-        private int tmp = 0;
-
-        /// <summary>
-        /// hình chữ nhật tọa độ góc trên bên trái và h,w
-        /// </summary>
-        private Rectangle rect;
+        private int crop_click = 0;
 
         /// <summary>
         /// tọa độ đỉnh trên cùng để crop
         /// </summary>
         private int cropx, cropy;
 
-        private void pb_image_MouseMove(object sender, MouseEventArgs e)
+        //Image[] al = new Image[100];
+        //private int t;
+        public crop_image()
         {
-            lbX.Text = " x: " + e.X.ToString();
-            lbY.Text = " y: " + e.Y.ToString();
-            if (e.Button == MouseButtons.Left)
+            InitializeComponent();
+        }
+
+        private void pb_image_MouseMove(object sender, MouseEventArgs e)//di chuyển chuột
+        {
+            int x, y;
+            lbX.Text = " x: " + e.X.ToString();//In ra màn hình tọa độ điểm x
+            lbY.Text = " y: " + e.Y.ToString(); ;//In ra màn hình tọa độ điểm y
+            if (e.Button == MouseButtons.Left)//kéo giữ chuột trái
             {
                 if (pb_image.Image == null)
                 {
                     return;
                 }
+                x = e.X;
+                y = e.Y;
+                if (e.X < 0) x = 0;
+                if (e.X > img.Width) x = img.Width - 1;
+                if (e.Y < 0) y = 0;
+                if (e.Y > img.Height) y = img.Height - 1;
+
                 pb_image.Refresh();
-                cropWidth = e.X - xp1;
-                cropHeight = e.Y - yp1;
+                cropWidth = x - x1_picture;
+                cropHeight = y - y1_picture;
 
                 #region if Chọn button crop
 
-                if (tmp == 1)
+                if (crop_click == 1)
                 {
-                    if (cropWidth > 0 && cropHeight > 0)
+                    if (e.X < 0)
                     {
-                        pb_image.Refresh();
-                        Graphics g = pb_image.CreateGraphics();
-                        g.DrawRectangle(cropPen, xp1, yp1, Math.Abs(cropWidth), Math.Abs(cropHeight));
-                        rect = new Rectangle(xp1, yp1, Math.Abs(e.X - xp1), Math.Abs(e.Y - yp1));//hình chữ nhật tọa độ góc trên bên trái và h,w
-                        cropx = xp1; cropy = yp1;
                     }
-                    if (cropWidth < 0 && cropHeight < 0)
+                    if (cropWidth > 0 && cropHeight > 0)//x > x1_picture && y > y1_picture
                     {
-                        pb_image.Refresh();
-                        Graphics g = pb_image.CreateGraphics();
-                        g.DrawRectangle(cropPen, e.X, e.Y, Math.Abs(cropWidth), Math.Abs(cropHeight));
-                        rect = new Rectangle(e.X, e.Y, Math.Abs(e.X - xp1), Math.Abs(e.Y - yp1));//hình chữ nhật tọa độ góc trên bên trái và h,w
-                        cropx = e.X; cropy = e.Y;
+                        Su_ly.Ve_hinh_cn(pb_image, x1_picture, y1_picture, Math.Abs(cropWidth), Math.Abs(cropHeight));
+                        cropx = x1_picture; cropy = y1_picture;
+                    }
+                    if (cropWidth < 0 && cropHeight < 0)//x < x1_picture && y < y1_picture
+                    {
+                        Su_ly.Ve_hinh_cn(pb_image, x, y, Math.Abs(cropWidth), Math.Abs(cropHeight));
+                        cropx = x; cropy = y;
                     }
 
-                    if (cropWidth < 0 && cropHeight > 0)
+                    if (cropWidth < 0 && cropHeight > 0)//x < x1_picture && y > y1_picture
                     {
-                        pb_image.Refresh();
-                        Graphics g = pb_image.CreateGraphics();
-                        g.DrawRectangle(cropPen, e.X, yp1, Math.Abs(cropWidth), Math.Abs(cropHeight));
-                        rect = new Rectangle(e.X, yp1, Math.Abs(e.X - xp1), Math.Abs(e.Y - yp1));//hình chữ nhật tọa độ góc trên bên trái và h,w
-                        cropx = e.X; cropy = yp1;
+                        Su_ly.Ve_hinh_cn(pb_image, x, y1_picture, Math.Abs(cropWidth), Math.Abs(cropHeight));
+                        cropx = x; cropy = y1_picture;
                     }
-                    if (cropWidth > 0 && cropHeight < 0)
+                    if (cropWidth > 0 && cropHeight < 0)//x > x1_picture && y < y1_picture
                     {
-                        pb_image.Refresh();
-                        Graphics g = pb_image.CreateGraphics();
-                        g.DrawRectangle(cropPen, xp1, e.Y, Math.Abs(cropWidth), Math.Abs(cropHeight));
-                        rect = new Rectangle(xp1, e.Y, Math.Abs(e.X - xp1), Math.Abs(e.Y - yp1));//hình chữ nhật tọa độ góc trên bên trái và h,w
-                        cropx = xp1; cropy = e.Y;
+                        Su_ly.Ve_hinh_cn(pb_image, x1_picture, y, Math.Abs(cropWidth), Math.Abs(cropHeight));
+                        cropx = x1_picture; cropy = y;
                     }
                 }
 
                 #endregion if Chọn button crop
             }
-        } // giu keo chuot trai
+        }
 
         /// <summary>
         /// Button save ảnh crop
@@ -125,6 +126,7 @@ namespace Cat_Anh
             {
                 img = Image.FromFile(file.FileName);
                 pb_image.Image = img;
+                // al[t+1]=img; t = al.Length;
             }
         }
 
@@ -136,39 +138,77 @@ namespace Cat_Anh
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             b = 0;
-            img = Image.FromFile(@"C:\Users\zorro\documents\visual studio 2015\Projects\Cat_Anh\Cat_Anh\img\1480552501_Image_-_Google_Docs.png", true);
+            img = Image.FromFile(@"img/1480552501_Image_-_Google_Docs.png", true);
             pb_image.Image = img;
             pb_image.Location = new Point(386, 254);
         }
 
+        /// <summary>
+        /// Button crop ảnh sau khi chon vùng crop
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_cut_Click(object sender, EventArgs e)
         {
             pb_image.Image = cropBitmap;
+            img = cropBitmap;
+            // al[t + 1] = img; t = al.Length;
         }
 
+        private void crop_image_Load(object sender, EventArgs e)
+        {
+            if (crop_click == 0)
+            {
+                btn_crop.BackColor = Color.Orange;
+            }
+            else
+            {
+                btn_crop.BackColor = Color.DarkGray;
+            }
+        }
+
+        private int undo;
+
+        private void btn_undo_Click(object sender, EventArgs e)
+        {
+            //undo = t-1;
+            //pb_image.Image = al[undo];
+            //undo = undo - 1;
+        }
+
+        /// <summary>
+        /// Button save ảnh crop
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnsave_Click(object sender, EventArgs e)
         {
             Su_ly.LuuFileAnh(cropBitmap);
         }
 
+        /// <summary>
+        /// Button chọn lệnh crop khi kéo thả chuột trái
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_crop_Click(object sender, EventArgs e)
         {
-            // chưa chọn buton vẽ thì tmp=0 else tmp =1
-            if (tmp == 0)
+            // chưa chọn buton chọn crop thì crop_click=0 else crop_click =1
+            if (crop_click == 0)
             {
-                tmp = 1;
+                btn_crop.BackColor = Color.Orange;
+                crop_click = 1;
             }
             else
             {
-                tmp = 0;
+                crop_click = 0;
+                btn_crop.BackColor = Color.DarkGray;
             }
         }
 
-        public crop_image()
-        {
-            InitializeComponent();
-        }
-
+        /// <summary>
+        /// Biến xác định đã click vào chọn ảnh hay chưa
+        /// </summary>
         private int b = 0;
 
         private void pb_image_Click(object sender, EventArgs e)
@@ -184,11 +224,13 @@ namespace Cat_Anh
                 {
                     img = Image.FromFile(file.FileName);
                     pb_image.Image = img;
+                    pb_image.Location = new Point(0, 0);
+                    // al[t + 1] = img; t = al.Length;
                     b = 1;
                 }
                 else
                 {
-                    img = Image.FromFile(@"C:\Users\zorro\documents\visual studio 2015\Projects\Cat_Anh\Cat_Anh\img\1480552501_Image_-_Google_Docs.png", true);
+                    img = Image.FromFile(@"img/1480552501_Image_-_Google_Docs.png", true);
                     pb_image.Image = img;
                     pb_image.Location = new Point(386, 254);
                 }
@@ -232,62 +274,40 @@ namespace Cat_Anh
             }
         }
 
-        private void pb_image_MouseUp(object sender, MouseEventArgs e)
+        private void pb_image_MouseUp(object sender, MouseEventArgs e)//Khi thả chuột trái
         {
-            xp2 = e.X;
-            yp2 = e.Y;
+            x2_picture = e.X;
+            y2_picture = e.Y;
 
             #region Kéo thả ảnh
 
-            if (tmp == 0)
+            if (crop_click == 0)
             {
                 //kéo thả ảnh ở vị tri mới
-                // thục chất là thay đổi vi trí của pb trong panel
-                x = Math.Abs(xp2 - xp1);
-                y = Math.Abs(yp2 - yp1);
-                if (xp2 - xp1 < 0)
-                {
-                    xpanel = pb_image.Location.X - x;
-                }
-                else
-                {
-                    xpanel = pb_image.Location.X + x;
-                }
-                if (yp2 - yp1 < 0)
-                {
-                    ypanel = pb_image.Location.Y - y;
-                }
-                else
-                {
-                    ypanel = pb_image.Location.Y + y;
-                }
-                pb_image.Location = new Point(xpanel, ypanel);
+                // thục chất là thay đổi vi trí của picturebox trong panel
+                x = x2_picture - x1_picture;
+                y = y2_picture - y1_picture;
+                xloca_img = pb_image.Location.X + x;
+                yloca_img = pb_image.Location.Y + y;
+                pb_image.Location = new Point(xloca_img, yloca_img);
             }
 
             #endregion Kéo thả ảnh
 
             //Chon vùng cắt ảnh
-            if (tmp == 1)
+            if (crop_click == 1)
             {
-                //Bitmap bit = new Bitmap(pb_image.Image, pb_image.Width, pb_image.Height);
-                //cropBitmap = new Bitmap(Math.Abs(cropWidth), Math.Abs(cropHeight));
-                //Graphics g = Graphics.FromImage(cropBitmap);// tao moi do hoa tu hinh anh
-                //g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                //g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                //g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-                //g.DrawImage(bit, 0, 0, rect, GraphicsUnit.Pixel);   //Vẽ định hình tại vị trí quy định và với kích thước quy định.
-
-                //pb_image.Image = cropBitmap;
-                pb_image.Image = Su_ly.crop(cropx, cropy, cropWidth, cropHeight, pb_image.Image);
+                //pb_image.Image = Su_ly.crop(cropx, cropy, Math.Abs(cropWidth), Math.Abs(cropHeight), pb_image.Image);
+                cropBitmap = new Bitmap(Su_ly.crop(cropx, cropy, Math.Abs(cropWidth), Math.Abs(cropHeight), pb_image.Image));
             }
         }
 
-        private void pb_image_MouseDown(object sender, MouseEventArgs e)
+        private void pb_image_MouseDown(object sender, MouseEventArgs e)//Khi nhấn chuột trái
         {
             if (e.Button == MouseButtons.Left)
             {
-                xp1 = e.X;
-                yp1 = e.Y;
+                x1_picture = e.X;
+                y1_picture = e.Y;
                 Cursor = Cursors.Cross;
                 cropPen.DashStyle = DashStyle.DashDotDot;
             }

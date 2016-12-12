@@ -328,11 +328,11 @@
             // btnsave
             // 
             this.btnsave.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnsave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnsave.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnsave.Image = ((System.Drawing.Image)(resources.GetObject("btnsave.Image")));
             this.btnsave.Location = new System.Drawing.Point(133, 111);
             this.btnsave.Name = "btnsave";
-            this.btnsave.Size = new System.Drawing.Size(78, 51);
+            this.btnsave.Size = new System.Drawing.Size(96, 51);
             this.btnsave.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnsave.TabIndex = 4;
             this.btnsave.Text = "Save";
@@ -341,7 +341,7 @@
             // btn_cut
             // 
             this.btn_cut.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btn_cut.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btn_cut.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btn_cut.Image = ((System.Drawing.Image)(resources.GetObject("btn_cut.Image")));
             this.btn_cut.Location = new System.Drawing.Point(18, 111);
             this.btn_cut.Name = "btn_cut";
@@ -354,7 +354,8 @@
             // btn_crop
             // 
             this.btn_crop.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btn_crop.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btn_crop.BackColor = System.Drawing.Color.DarkGray;
+            this.btn_crop.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btn_crop.Image = ((System.Drawing.Image)(resources.GetObject("btn_crop.Image")));
             this.btn_crop.Location = new System.Drawing.Point(133, 25);
             this.btn_crop.Name = "btn_crop";
@@ -366,7 +367,7 @@
             // btn_redo
             // 
             this.btn_redo.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btn_redo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btn_redo.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btn_redo.Image = ((System.Drawing.Image)(resources.GetObject("btn_redo.Image")));
             this.btn_redo.Location = new System.Drawing.Point(62, 25);
             this.btn_redo.Name = "btn_redo";
@@ -377,13 +378,14 @@
             // btn_undo
             // 
             this.btn_undo.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btn_undo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btn_undo.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btn_undo.Image = ((System.Drawing.Image)(resources.GetObject("btn_undo.Image")));
             this.btn_undo.Location = new System.Drawing.Point(18, 25);
             this.btn_undo.Name = "btn_undo";
             this.btn_undo.Size = new System.Drawing.Size(38, 53);
             this.btn_undo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btn_undo.TabIndex = 0;
+            this.btn_undo.Click += new System.EventHandler(this.btn_undo_Click);
             // 
             // groupBox1
             // 
@@ -429,6 +431,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "crop_image";
             this.Text = "crop_image";
+            this.Load += new System.EventHandler(this.crop_image_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.pane_image.ResumeLayout(false);

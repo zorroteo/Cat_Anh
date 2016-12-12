@@ -53,5 +53,21 @@ namespace Cat_Anh
             }
             return btm;
         }
+
+        /// <summary>
+        /// hình chữ nhật tọa độ góc trên bên trái và h,w
+        /// </summary>
+        private static Rectangle rect;
+
+        private static Pen cropPen = new Pen(Color.Yellow, 1);
+
+        public static Rectangle Ve_hinh_cn(PictureBox pb_image, int x, int y, int width, int height)
+        {
+            pb_image.Refresh();
+            Graphics g = pb_image.CreateGraphics();
+            g.DrawRectangle(cropPen, x, y, width, height);
+            rect = new Rectangle(x, y, width, height);//hình chữ nhật tọa độ góc trên bên trái và h,w
+            return rect;
+        }
     }
 }
