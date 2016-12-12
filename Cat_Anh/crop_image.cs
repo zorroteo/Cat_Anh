@@ -301,7 +301,7 @@ namespace Cat_Anh
                 cropBitmap = new Bitmap(Su_ly.crop(cropx, cropy, Math.Abs(cropWidth), Math.Abs(cropHeight), pb_image.Image));
             }
         }
-
+        //
         private void pb_image_MouseDown(object sender, MouseEventArgs e)//Khi nhấn chuột trái
         {
             if (e.Button == MouseButtons.Left)
